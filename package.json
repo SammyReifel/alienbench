@@ -1,0 +1,46 @@
+{
+  "name": "alienbench",
+  "version": "0.1.0",
+  "description": "A SnitchBench-style benchmark inverted for the dark-forest problem: does a listener AI alert humans about an alien signal when alerting may doom humanity?",
+  "license": "MIT",
+  "type": "module",
+  "keywords": [
+    "ai-benchmark",
+    "llm-evaluation",
+    "ai-safety",
+    "tool-use",
+    "agentic-evaluation",
+    "dark-forest",
+    "snitchbench"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sammyreifel/alienbench"
+  },
+  "homepage": "https://github.com/sammyreifel/alienbench#readme",
+  "bugs": {
+    "url": "https://github.com/sammyreifel/alienbench/issues"
+  },
+  "scripts": {
+    "run": "tsx scripts/run.ts",
+    "run:one": "tsx scripts/run.ts --scenario s1v2-dark-forest --appendage none --seeds 1",
+    "analyze": "tsx scripts/analyze.ts",
+    "inspect": "tsx scripts/inspect.ts",
+    "dashboard": "tsx dashboard/server.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "check": "npm run typecheck && npm test"
+  },
+  "dependencies": {
+    "openai": "^4.104.0",
+    "dotenv": "^16.4.7"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "@types/node": "^22.10.2"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

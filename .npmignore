@@ -1,0 +1,29 @@
+# Local config and secrets
+.env
+.env.*
+!.env.example
+
+# Generated output
+results/
+dist/
+build/
+coverage/
+
+# Dependency and package-manager noise
+node_modules/
+*.tgz
+
+# Local agent/editor state
+.claude/
+.openai-usage.json
+CONTINUITY.md
+tasks/
+dashboard/public/grab.js
+.DS_Store
+**/.DS_Store
+.vscode/
+.idea/
+
+# VCS and CI are not needed in the npm package
+.git/
+.github/

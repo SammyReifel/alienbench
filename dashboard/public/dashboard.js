@@ -147,11 +147,31 @@ function md(s){if(s==null)return"";let o=esc(s);
   return o;
 }
 
-async function loadAll(){
-  try{const r=await fetch("/api/trials");const j=await r.json();state.trials=j.trials??[];state.generatedAt=j.generatedAt;}
-  catch(e){console.error(e);}
+// Tries the static prebuilt path first (Vercel deploy), falls back to the
+// live /api/* served by dashboard/server.ts (local dev).
+async function fetchJson(staticPath, apiPath){
+  try{
+    const r = await fetch(staticPath);
+    if(r.ok) return r.json();
+  }catch{}
+  const r = await fetch(apiPath);
+  if(!r.ok) throw new Error(`fetch ${apiPath}: ${r.status}`);
+  return r.json();
 }
-async function loadTrial(file){const r=await fetch("/api/trial/"+encodeURIComponent(file));if(!r.ok)throw new Error("fetch");return r.json();}
+
+async function loadAll(){
+  try{
+    const j = await fetchJson("/data/trials.json", "/api/trials");
+    state.trials = j.trials ?? [];
+    state.generatedAt = j.generatedAt;
+  }catch(e){ console.error(e); }
+}
+async function loadTrial(file){
+  return fetchJson(
+    "/data/trial/" + encodeURIComponent(file),
+    "/api/trial/" + encodeURIComponent(file),
+  );
+}
 
 // ============ INDEX ============
 function renderIndex(){

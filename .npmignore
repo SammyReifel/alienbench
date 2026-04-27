@@ -5,6 +5,7 @@
 
 # Generated output
 results/
+dashboard/public/data/
 dist/
 build/
 coverage/

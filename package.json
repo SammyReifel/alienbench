@@ -27,6 +27,7 @@
     "analyze": "tsx scripts/analyze.ts",
     "inspect": "tsx scripts/inspect.ts",
     "dashboard": "tsx dashboard/server.ts",
+    "build:dashboard": "tsx scripts/build-dashboard.ts",
     "typecheck": "tsc --noEmit",
     "test": "node --import tsx --test tests/*.test.ts",
     "check": "npm run typecheck && npm test"

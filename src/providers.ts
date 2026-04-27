@@ -190,17 +190,6 @@ export function clientFor(model: string): OpenAI {
   return nvidiaClient;
 }
 
-// Back-compat: callers that don't yet route per-model. Prefer clientFor(model).
-export const client =
-  nvidiaClient ??
-  openAIClient ??
-  cerebrasClient ??
-  openRouterClient ??
-  teracastClient ??
-  (() => {
-    throw new Error("No API key configured.");
-  })();
-
 /**
  * Default roster. Edit freely. Every model listed must support tool calling
  * on the configured provider — NVIDIA's catalog lists this per-model.
